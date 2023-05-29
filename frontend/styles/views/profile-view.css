@@ -1,0 +1,84 @@
+.profile-view-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.profile-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding: 5%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+}
+
+.profile-image-container {
+  margin-right: 20px;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name-surname-div,
+.bio-div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.name-label,
+.surname-label {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.bio-label {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.every-post-view {
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin: 20px;
+}
+
+.every-post {
+	margin-left: 20px;
+	margin-right: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-view {
+    flex-direction: column;
+  }
+
+  .profile-image-container {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .name-surname-div,
+  .bio-div {
+    width: 100%;
+  }
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+}

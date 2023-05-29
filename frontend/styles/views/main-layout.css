@@ -1,0 +1,14 @@
+.notification-icon::after {
+  content: attr(badge);
+  position: absolute;
+  top: 180px;
+  right: 270px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 16px;
+}

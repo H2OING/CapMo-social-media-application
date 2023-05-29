@@ -1,0 +1,17 @@
+#login-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  
+  background-image: url('images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  
+}
+
+:host {
+  display: block;
+  padding: var(--lumo-space-m) var(--lumo-space-l);
+}
