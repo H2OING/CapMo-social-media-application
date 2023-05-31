@@ -5,6 +5,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -172,8 +174,9 @@ public class ProfileView extends Div {
         postLayout = new VerticalLayout();
         postLayout.setWidth("100%");
 
-        Collection<UserPost> userPosts = currentProfile.getPost();
-
+        List<UserPost> userPosts = (List<UserPost>) currentProfile.getPost();
+        Collections.sort(userPosts, Comparator.comparing(UserPost::getCreatedDate));
+        
         Div postsDiv = new Div();
         
         if(userPosts.isEmpty()) {

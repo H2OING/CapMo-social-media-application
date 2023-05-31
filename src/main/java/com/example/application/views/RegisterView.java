@@ -13,6 +13,7 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
@@ -57,25 +58,25 @@ public class RegisterView extends Composite {
 
     private void register(String username, String password1, String password2, LocalDate birthDate) {
     	if (username.trim().isEmpty()) {
-            Notification.show("Enter a username!");
+            Notification.show("Enter a username!").setPosition(Position.TOP_CENTER);
         } else if (username.contains(" ")) {
-            Notification.show("Username cannot contain empty spaces!");
+            Notification.show("Username cannot contain empty spaces!").setPosition(Position.TOP_CENTER);
         } else if (username.length() < 4) {
-            Notification.show("Username must be at least 4 characters long!");
-//        } else if (password1.isEmpty()) {
-//            Notification.show("Enter a password!");
-//        } else if (password1.contains(" ")) {
-//            Notification.show("Password cannot contain empty spaces!");
-//        } else if (password1.length() < 8) {
-//            Notification.show("Password must be at least 8 characters long!");
-//        } else if (!password1.matches(".*\\d.*")) {
-//            Notification.show("Password must contain at least one digit!");
-//        } else if (!password1.matches(".*[A-Z].*")) {
-//            Notification.show("Password must contain at least one uppercase letter!");
-//        } else if (!password1.equals(password2)) {
-//            Notification.show("Passwords don't match!");
-//        } else if (ChronoUnit.YEARS.between(birthDate, LocalDate.now()) < 13) {
-//            Notification.show("You must be 13 years or older to register!");
+            Notification.show("Username must be at least 4 characters long!").setPosition(Position.TOP_CENTER);
+        } else if (password1.isEmpty()) {
+            Notification.show("Enter a password!");
+        } else if (password1.contains(" ")) {
+            Notification.show("Password cannot contain empty spaces!").setPosition(Position.TOP_CENTER);
+        } else if (password1.length() < 8) {
+            Notification.show("Password must be at least 8 characters long!").setPosition(Position.TOP_CENTER);
+        } else if (!password1.matches(".*\\d.*")) {
+            Notification.show("Password must contain at least one digit!").setPosition(Position.TOP_CENTER);
+        } else if (!password1.matches(".*[A-Z].*")) {
+            Notification.show("Password must contain at least one uppercase letter!").setPosition(Position.TOP_CENTER);
+        } else if (!password1.equals(password2)) {
+            Notification.show("Passwords don't match!").setPosition(Position.TOP_CENTER);
+        } else if (ChronoUnit.YEARS.between(birthDate, LocalDate.now()) < 13) {
+            Notification.show("You must be 13 years or older to register!").setPosition(Position.TOP_CENTER);
         } else {
             authService.register(username, password1);
         }

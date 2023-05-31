@@ -58,19 +58,26 @@ public class CommentServiceImpl implements ICommentService{
 
 	    List<Comments> comments = (List<Comments>) userPost.getComments();
 	    VerticalLayout commentLayout = new VerticalLayout();
+
+	    Div commentsContainer = new Div();
+	    commentsContainer.setHeight("200px");
+	    commentsContainer.getStyle()
+	            .set("overflow-y", "auto")
+	            .set("padding-right", "10px");
+
 	    commentLayout.setWidth("100%");
 
 	    comments.forEach(comment -> {
 	        HorizontalLayout commentHeaderLayout = new HorizontalLayout();
-	        commentHeaderLayout.setAlignItems(Alignment.CENTER);
+	        	commentHeaderLayout.setAlignItems(Alignment.CENTER);
 
 	        Profile commenterProfile = comment.getUser().getProfile();
 
 	        Image profilePicture = new Image(new StreamResource("profile-picture.jpg",
 	                () -> new ByteArrayInputStream(commenterProfile.getProfilePicture())), "Profile Picture");
-	        profilePicture.setWidth("30px");
-	        profilePicture.setHeight("30px");
-	        profilePicture.getStyle().set("border-radius", "50%");
+	        	profilePicture.setWidth("30px");
+	        	profilePicture.setHeight("30px");
+	        	profilePicture.getStyle().set("border-radius", "50%");
 
 	        Span username = new Span(commenterProfile.getUser().getUsername());
 
@@ -89,6 +96,8 @@ public class CommentServiceImpl implements ICommentService{
 	        
 	        commentLayout.add(commentItemLayout);
 	    });
+	    
+	    commentsContainer.add(commentLayout);
 
 	    TextArea newCommentField = new TextArea();
 	    newCommentField.setPlaceholder("Add a comment");
@@ -99,14 +108,37 @@ public class CommentServiceImpl implements ICommentService{
 	        addComment(userPost, newCommentText, currentUser);
 	        notifService.addCommentNotification(currentUser, profile);
 
+	        HorizontalLayout commentHeaderLayout = new HorizontalLayout();
+	        commentHeaderLayout.setAlignItems(Alignment.CENTER);
+	        
+	        Image profilePicture = new Image(new StreamResource("profile-picture.jpg",
+	                () -> new ByteArrayInputStream(currentUser.getProfile().getProfilePicture())), "Profile Picture");
+	        profilePicture.setWidth("30px");
+	        profilePicture.setHeight("30px");
+	        profilePicture.getStyle().set("border-radius", "50%");
+
+	        Span username = new Span(currentUser.getUsername());
+	        commentHeaderLayout.add(profilePicture, username);
+	        
 	        Span newCommentTextSpan = new Span(newCommentText);
-	        commentLayout.add(newCommentTextSpan);
+	        Div commentTextContainer = new Div(newCommentTextSpan);
+	        commentTextContainer.getStyle().set("word-wrap", "break-word");
+
+	        VerticalLayout commentItemLayout = new VerticalLayout(commentHeaderLayout, commentTextContainer);
+	        commentItemLayout.getStyle()
+            .set("background-color", "#F2F2F2")
+            .set("border-radius", "10px")
+            .set("padding", "10px")
+            .set("margin-bottom", "10px");
+	        
+	        commentLayout.add(commentItemLayout);
 	        newCommentField.clear();
+	        commentsContainer.getElement().executeJs("this.scrollTop = this.scrollHeight;");
 	    });
 
 	    FormLayout commentFormLayout = new FormLayout(newCommentField, submitButton);
 
-	    dialog.add(commentLayout, commentFormLayout);
+	    dialog.add(commentsContainer, commentFormLayout);
 	    dialog.open();
 	}
 }

@@ -122,7 +122,7 @@ public class MainLayout extends AppLayout {
 
     private void addDrawerContent() {
         H1 appName = new H1("CapMo");
-        appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
+        appName.addClassNames(LumoUtility.FontSize.XXLARGE, LumoUtility.Margin.NONE);
         Header header = new Header(appName);
 
         Scroller scroller = new Scroller(createNavigation());
